@@ -392,21 +392,12 @@ const DAILY_RATE =
     )
     - 1;
 
-
 /* =========================================================
    INPUT
 ========================================================= */
 
 const moneyInput =
-    document.getElementById(
-        "money"
-    );
-
-
-moneyInput.value =
-    localStorage.getItem(
-        "money"
-    ) || "";
+    document.getElementById("money");
 
 
 /* =========================================================
@@ -414,21 +405,6 @@ moneyInput.value =
 ========================================================= */
 
 let hist = [];
-
-try{
-
-    hist =
-        JSON.parse(
-            localStorage.getItem(
-                "hist"
-            ) || "[]"
-        );
-
-}catch(e){
-
-    hist=[];
-
-}
 
 
 /* =========================================================
@@ -1025,115 +1001,88 @@ const chart =
    SAVE
 ========================================================= */
 
-function save(){
+async function save(){
 
-    const value =
-        Number(
-            moneyInput.value
-        ) || 0;
+    const value = Number(moneyInput.value) || 0;
 
-
-    /*
-        Lưu số tiền hiện tại
-    */
-
-    localStorage.setItem(
-        "money",
-        value
-    );
-
-
-    const now =
-        new Date();
-
-
-    /*
-        Ngày hiện tại:
-
-        DD/MM/YYYY
-    */
+    const now = new Date();
 
     const dateString =
-        String(
-            now.getDate()
-        ).padStart(
-            2,
-            "0"
-        )
-        +
-        "/"
-        +
-        String(
-            now.getMonth()+1
-        ).padStart(
-            2,
-            "0"
-        )
-        +
-        "/"
-        +
+        String(now.getDate()).padStart(2,"0") + "/" +
+        String(now.getMonth()+1).padStart(2,"0") + "/" +
         now.getFullYear();
 
+    const snap = await getDoc(dashboardRef);
 
-    /*
-        Nếu hôm nay đã có
-        dữ liệu → cập nhật.
-    */
+    let hist = [];
 
-    const existing =
-        hist.find(
-            x =>
-                x.d ===
-                dateString
-        );
+    if(snap.exists()){
 
+        hist = snap.data().hist || [];
 
-    if(existing){
+    }
 
-        existing.v =
-            value;
+    const index = hist.findIndex(x => x.d === dateString);
+
+    if(index >= 0){
+
+        hist[index].v = value;
 
     }else{
 
         hist.push({
-
-            d:
-                dateString,
-
-            v:
-                value
-
+            d: dateString,
+            v: value
         });
 
     }
 
-
-    /*
-        Sắp xếp lịch sử
-    */
-
-    hist.sort(
-        (a,b) =>
-            dateFromString(a.d)
-            -
-            dateFromString(b.d)
+    await setDoc(
+        dashboardRef,
+        {
+            money: value,
+            hist: hist,
+            updatedAt: serverTimestamp()
+        },
+        {
+            merge:true
+        }
     );
-
-
-    localStorage.setItem(
-        "hist",
-        JSON.stringify(
-            hist
-        )
-    );
-
-
-    updateChart();
-
-    calc();
 
 }
 
+
+
+onSnapshot(dashboardRef, async (docSnap)=>{
+
+    if(!docSnap.exists()){
+
+        await setDoc(dashboardRef,{
+            money:1300,
+            hist:[
+                {
+                    d:"22/07/2026",
+                    v:1300
+                }
+            ],
+            updatedAt:serverTimestamp()
+        });
+
+        return;
+
+    }
+
+    const data = docSnap.data();
+
+    moneyInput.value = data.money || "";
+
+    hist = data.hist || [];
+
+    calc();
+
+    updateChart();
+
+});
 
 /* =========================================================
    UPDATE CHART
