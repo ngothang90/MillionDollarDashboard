@@ -213,7 +213,7 @@ button:hover{
         step="1"
     >
 
-    <button onclick="save()">
+    <button id="btnSave">
         Cập nhật
     </button>
 
@@ -1051,7 +1051,7 @@ async function save(){
 
 }
 
-
+window.save = save;
 
 onSnapshot(dashboardRef, async (docSnap)=>{
 
