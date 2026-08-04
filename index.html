@@ -1053,6 +1053,12 @@ async function save(){
 
 window.save = save;
 
+
+document
+    .getElementById("btnSave")
+    .addEventListener("click", save);
+
+
 onSnapshot(dashboardRef, async (docSnap)=>{
 
     if(!docSnap.exists()){
