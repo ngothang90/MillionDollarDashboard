@@ -277,12 +277,35 @@ Hoàn thành:
 </div>
 
 
-<script>
+<script type="module">
 
 /* =========================================================
    CẤU HÌNH
 ========================================================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  onSnapshot,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyA1TCytQaK8KiGfcGXwU_JvWPFYMMvfNqc",
+  authDomain: "milliondollardashboard.firebaseapp.com",
+  projectId: "milliondollardashboard",
+  storageBucket: "milliondollardashboard.firebasestorage.app",
+  messagingSenderId: "560429245546",
+  appId: "1:560429245546:web:9a82b92c7b31c49702d613",
+  measurementId: "G-1K1VE1JD4S"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const dashboardRef = doc(db, "dashboard", "main");
 const GOAL = 1000000;
 
 
