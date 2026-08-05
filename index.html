@@ -2237,14 +2237,10 @@ setInterval(
     60000
 );
 
-const tradeDate = document.getElementById("tradeDate");
-
-if (tradeDate) {
-    tradeDate.value =
-        new Date()
-        .toISOString()
-        .split("T")[0];
-}
+tradeDate.value =
+    new Date()
+    .toISOString()
+    .split("T")[0];
 
 tick();
 
