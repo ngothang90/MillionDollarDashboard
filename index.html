@@ -964,7 +964,7 @@ const tradesRef =
         "trades"
     );
 
-const GOAL = 1000000;
+const GOAL = 500000;
 
 const tradeDate =
     document.getElementById("tradeDate");
@@ -1023,15 +1023,15 @@ const END_DATE =
 /*
     MỤC TIÊU BẮT ĐẦU
 
-    22/07/2026
-    $1,300
+    05/08/2026
+    $100
 */
 
 const TARGET_START =
     new Date(
         2026,
-        6,
-        22,
+        7,
+        5,
         0,
         0,
         0
@@ -1039,14 +1039,14 @@ const TARGET_START =
 
 
 const TARGET_START_VALUE =
-    1300;
+    100;
 
 
 /*
     MỤC TIÊU KẾT THÚC
 
     28/02/2027
-    $917,566
+    $500,000
 */
 
 const TARGET_END =
@@ -1061,7 +1061,7 @@ const TARGET_END =
 
 
 const TARGET_END_VALUE =
-    917566;
+    500000;
 
 
 /* =========================================================
@@ -1122,8 +1122,8 @@ let hist = [];
 /*
     Bạn đã có:
 
-    22/07/2026
-    $1,300
+    05/08/2026
+    $100
 */
 
 const fixedActualData = [
@@ -1133,12 +1133,12 @@ const fixedActualData = [
         x:
             new Date(
                 2026,
-                6,
-                22
+                7,
+                5
             ).getTime(),
 
         y:
-            1300
+            100
 
     }
 
@@ -2008,11 +2008,11 @@ onSnapshot(dashboardRef, async (docSnap)=>{
     if(!docSnap.exists()){
 
         await setDoc(dashboardRef,{
-            money:1300,
+            money:100,
             hist:[
                 {
-                    d:"22/07/2026",
-                    v:1300
+                    d:"05/08/2026",
+                    v:100
                 }
             ],
             updatedAt:serverTimestamp()
