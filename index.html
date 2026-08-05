@@ -480,6 +480,92 @@ button:hover{
 
 }
 
+<style>
+
+...
+
+.chart-container{
+    ...
+}
+
+/*=========================
+Toast
+=========================*/
+
+.toast{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    background:#1fbf75;
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:10px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+    opacity:0;
+
+    transform:translateY(30px);
+
+    transition:.35s;
+
+    z-index:9999;
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/*=========================
+Responsive
+=========================*/
+
+@media(max-width:700px){
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+    input{
+
+        width:100%;
+
+        margin-bottom:10px;
+
+    }
+
+    button{
+
+        width:100%;
+
+        margin-left:0;
+
+    }
+
+    .chart-container{
+
+        height:320px;
+
+    }
+
+}
+
+</style>
+
 </style>
 </head>
 
@@ -2151,10 +2237,14 @@ setInterval(
     60000
 );
 
-tradeDate.value =
-    new Date()
-    .toISOString()
-    .split("T")[0];
+const tradeDate = document.getElementById("tradeDate");
+
+if (tradeDate) {
+    tradeDate.value =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+}
 
 tick();
 
@@ -2177,80 +2267,4 @@ Toast
 
 </body>
 </html>
-
-/*=========================
-Toast
-=========================*/
-
-.toast{
-
-    position:fixed;
-
-    right:25px;
-
-    bottom:25px;
-
-    background:#1fbf75;
-
-    color:white;
-
-    padding:14px 22px;
-
-    border-radius:10px;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.35);
-
-    opacity:0;
-
-    transform:translateY(30px);
-
-    transition:.35s;
-
-    z-index:9999;
-
-}
-
-.toast.show{
-
-    opacity:1;
-
-    transform:translateY(0);
-
-}
-
-/*=========================
-Responsive
-=========================*/
-
-@media(max-width:700px){
-
-    .cards{
-
-        grid-template-columns:1fr;
-
-    }
-
-    input{
-
-        width:100%;
-
-        margin-bottom:10px;
-
-    }
-
-    button{
-
-        width:100%;
-
-        margin-left:0;
-
-    }
-
-    .chart-container{
-
-        height:320px;
-
-    }
-
-}
 
