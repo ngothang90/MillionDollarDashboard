@@ -10,96 +10,204 @@
 
 <style>
 
+:root{
+
+    --bg:#0b1220;
+
+    --panel:#16233b;
+
+    --panel2:#1d2f4d;
+
+    --text:#ffffff;
+
+    --sub:#cbd5e1;
+
+    --blue:#00bfff;
+
+    --green:#41ff8c;
+
+    --yellow:#ffd54f;
+
+    --red:#ff6b6b;
+
+    --shadow:0 10px 25px rgba(0,0,0,.30);
+
+}
+
 *{
     box-sizing:border-box;
 }
 
 body{
+
     margin:0;
-    background:#0b1220;
-    color:#fff;
-    font-family:Arial,sans-serif;
-}
 
+    background:linear-gradient(
+        180deg,
+        #08111f,
+        #0f172a
+    );
+
+    color:var(--text);
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+}
 .c{
-    max-width:1100px;
+
+    max-width:1200px;
+
     margin:auto;
-    padding:20px;
-}
 
+    padding:25px;
+
+}
 h1{
-    text-align:center;
-    color:#66eeff;
-    margin:5px 0 20px;
-    font-size:28px;
-}
 
+    text-align:center;
+
+    color:#6ce5ff;
+
+    margin:10px 0 25px;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
 
 /* ==============================
    COUNTDOWN
 ============================== */
 
 .cards{
+
     display:grid;
-    grid-template-columns:1fr;
-    gap:10px;
-}
 
+    grid-template-columns:
+
+        repeat(
+            auto-fit,
+            minmax(220px,1fr)
+        );
+
+    gap:18px;
+
+}
 .card{
-    background:#16233b;
-    padding:15px 10px;
-    border-radius:10px;
+
+    background:linear-gradient(
+        180deg,
+        #1a2b47,
+        #13233a
+    );
+
+    border-radius:16px;
+
+    padding:22px;
+
     text-align:center;
-    box-shadow:0 4px 15px rgba(0,0,0,.25);
-}
 
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+
+    border:1px solid rgba(255,255,255,.06);
+
+}
+.card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+        0 15px 35px
+
+        rgba(0,191,255,.25);
+
+}
 .n{
-    font-size:48px;
-    color:#66ff99;
+
+    font-size:52px;
+
+    color:var(--green);
+
     font-weight:bold;
-}
 
+}
 .card-label{
-    margin-top:5px;
-    color:#cbd5e1;
-    font-size:18px;
-}
 
+    color:var(--sub);
+
+    font-size:18px;
+
+    margin-top:8px;
+
+}
 
 /* ==============================
    INPUT
 ============================== */
 
 .input-area{
-    margin-top:20px;
-    background:#16233b;
-    padding:15px;
-    border-radius:10px;
-}
 
+    margin-top:25px;
+
+    background:var(--panel);
+
+    padding:20px;
+
+    border-radius:16px;
+
+    box-shadow:var(--shadow);
+
+}
 input{
-    padding:10px;
-    width:180px;
-    border:none;
-    border-radius:6px;
-    font-size:16px;
-}
 
+    padding:12px;
+
+    width:220px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:17px;
+
+    outline:none;
+
+}
 button{
-    padding:10px 15px;
-    margin-left:5px;
+
+    padding:12px 20px;
+
     border:none;
-    border-radius:6px;
+
+    border-radius:10px;
+
     cursor:pointer;
-    background:#00bfff;
+
+    background:var(--blue);
+
     color:white;
+
     font-weight:bold;
-}
 
+    transition:.25s;
+
+}
 button:hover{
-    opacity:.85;
-}
 
+    transform:translateY(-2px);
+
+    opacity:.95;
+
+}
 
 /* ==============================
    INFO
@@ -129,12 +237,18 @@ button:hover{
 ============================== */
 
 .chart-box{
-    margin-top:20px;
-    background:#16233b;
-    padding:15px;
-    border-radius:10px;
-}
 
+    margin-top:25px;
+
+    background:var(--panel);
+
+    padding:20px;
+
+    border-radius:16px;
+
+    box-shadow:var(--shadow);
+
+}
 .chart-title{
     font-size:18px;
     font-weight:bold;
@@ -142,13 +256,191 @@ button:hover{
 }
 
 .chart-container{
+
     position:relative;
-    height:420px;
+
+    height:460px;
+
     background:white;
-    border-radius:8px;
-    padding:5px;
+
+    border-radius:12px;
+
+    padding:10px;
+
 }
 
+
+/* ==============================
+   TRADE JOURNAL
+============================== */
+
+.trade-box{
+
+    margin-top:25px;
+
+    background:#16233b;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.trade-title{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin-bottom:18px;
+
+}
+
+.trade-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(180px,1fr));
+
+    gap:12px;
+
+}
+
+.trade-grid input,
+.trade-grid select{
+
+    width:100%;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+}
+
+.trade-grid textarea{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:10px;
+
+    resize:vertical;
+
+    min-height:80px;
+
+    font-size:15px;
+
+}
+
+.trade-actions{
+
+    margin-top:18px;
+
+}
+
+.trade-actions button{
+
+    background:#16a34a;
+
+}
+
+.trade-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:25px;
+
+}
+
+.trade-table th{
+
+    background:#0f172a;
+
+    padding:10px;
+
+}
+
+.trade-table td{
+
+    padding:10px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.trade-table tbody tr:hover{
+
+    background:rgba(255,255,255,.05);
+
+}
+
+.trade-summary{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(160px,1fr));
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.sum-card{
+
+    background:#16233b;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    text-align:center;
+
+}
+
+.sum-value{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#41ff8c;
+
+}
+
+.sum-title{
+
+    margin-top:8px;
+
+    color:#cbd5e1;
+
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media(max-width:600px){
+
+    ...
+}
 
 /* ==============================
    MOBILE
@@ -166,6 +458,28 @@ button:hover{
 
 }
 
+.trade-table button{
+
+    background:#ef4444;
+
+    color:white;
+
+    padding:6px 10px;
+
+    border:none;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+.trade-table button:hover{
+
+    opacity:.8;
+
+}
+
 </style>
 </head>
 
@@ -178,25 +492,60 @@ button:hover{
 
 
 <!-- ==============================
-     COUNTDOWN CHỈ NGÀY
+     DASHBOARD CARDS
 ============================== -->
 
 <div class="cards">
 
     <div class="card">
 
-        <div id="d" class="n">
+        <div class="n" id="cardMoney">
+            $0
+        </div>
+
+        <div class="card-label">
+            💰 Tài sản hiện tại
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="n" id="d">
             0
         </div>
 
         <div class="card-label">
-            Ngày còn lại
+            📅 Ngày còn lại
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="n" id="cardMonthGoal">
+            $0
+        </div>
+
+        <div class="card-label">
+            🎯 Mục tiêu tháng
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="n" id="cardPercent">
+            0%
+        </div>
+
+        <div class="card-label">
+            🏆 Hoàn thành mục tiêu
         </div>
 
     </div>
 
 </div>
-
 
 <!-- ==============================
      INPUT
@@ -276,6 +625,217 @@ Hoàn thành:
 
 </div>
 
+<!-- ==============================
+     TRADE JOURNAL
+============================== -->
+
+<div class="c">
+
+<div class="trade-box">
+
+<div class="trade-title">
+
+📒 Nhật ký giao dịch
+
+</div>
+
+<div class="trade-grid">
+
+<div>
+
+<label>Ngày</label>
+
+<input
+id="tradeDate"
+type="date">
+
+</div>
+
+<div>
+
+<label>Symbol</label>
+
+<select id="tradeSymbol">
+
+<option>XAUUSD</option>
+
+<option>BTCUSD</option>
+
+<option>EURUSD</option>
+
+<option>USDJPY</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Loại</label>
+
+<select id="tradeType">
+
+<option>Buy</option>
+
+<option>Sell</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Lot</label>
+
+<input
+id="tradeLot"
+type="number"
+step="0.01">
+
+</div>
+
+<div>
+
+<label>Lãi / Lỗ (USD)</label>
+
+<input
+id="tradeProfit"
+type="number"
+step="0.01">
+
+</div>
+
+<div style="grid-column:1/-1;">
+
+<label>Ghi chú</label>
+
+<textarea
+id="tradeNote"
+placeholder="Ví dụ: London Session, Breakout, News..."
+></textarea>
+
+</div>
+
+</div>
+
+<div class="trade-actions">
+
+<button
+id="btnTradeSave">
+
+💾 Lưu giao dịch
+
+</button>
+
+</div>
+
+<table class="trade-table">
+
+<thead>
+
+<tr>
+
+<th>Ngày</th>
+
+<th>Symbol</th>
+
+<th>Loại</th>
+
+<th>Lot</th>
+
+<th>P/L</th>
+
+<th>Ghi chú</th>
+
+<th>Thao tác</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tradeBody">
+
+<tr>
+
+<td colspan="6">
+
+Chưa có giao dịch
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="trade-summary">
+
+    <div class="sum-card">
+
+        <div class="sum-value" id="totalTrades">
+            0
+        </div>
+
+        <div class="sum-title">
+            Tổng lệnh
+        </div>
+
+    </div>
+
+    <div class="sum-card">
+
+        <div class="sum-value" id="winTrades">
+            0
+        </div>
+
+        <div class="sum-title">
+            Thắng
+        </div>
+
+    </div>
+
+    <div class="sum-card">
+
+        <div class="sum-value" id="loseTrades">
+            0
+        </div>
+
+        <div class="sum-title">
+            Thua
+        </div>
+
+    </div>
+
+    <div class="sum-card">
+
+        <div class="sum-value" id="winRate">
+            0%
+        </div>
+
+        <div class="sum-title">
+            Win Rate
+        </div>
+
+    </div>
+
+    <div class="sum-card">
+
+        <div class="sum-value" id="totalProfit">
+            $0
+        </div>
+
+        <div class="sum-title">
+            Tổng Profit
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
 
 <script type="module">
 
@@ -288,8 +848,13 @@ import {
   doc,
   getDoc,
   setDoc,
+  deleteDoc,
   onSnapshot,
-  serverTimestamp
+  serverTimestamp,
+  collection,
+  addDoc,
+  query,
+  orderBy
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -306,8 +871,53 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const dashboardRef = doc(db, "dashboard", "main");
+
+const tradesRef =
+    collection(
+        db,
+        "trades"
+    );
+
 const GOAL = 1000000;
 
+const tradeDate =
+    document.getElementById("tradeDate");
+
+const tradeSymbol =
+    document.getElementById("tradeSymbol");
+
+const tradeType =
+    document.getElementById("tradeType");
+
+const tradeLot =
+    document.getElementById("tradeLot");
+
+const tradeProfit =
+    document.getElementById("tradeProfit");
+
+const tradeNote =
+    document.getElementById("tradeNote");
+
+const tradeBody =
+    document.getElementById("tradeBody");
+
+const btnTradeSave =
+    document.getElementById("btnTradeSave");
+
+const totalTrades =
+document.getElementById("totalTrades");
+
+const winTrades =
+document.getElementById("winTrades");
+
+const loseTrades =
+document.getElementById("loseTrades");
+
+const winRate =
+document.getElementById("winRate");
+
+const totalProfit =
+document.getElementById("totalProfit");
 
 /*
     Countdown cuối cùng
@@ -399,6 +1009,17 @@ const DAILY_RATE =
 const moneyInput =
     document.getElementById("money");
 
+const cardMoney =
+    document.getElementById("cardMoney");
+
+const cardMonthGoal =
+    document.getElementById("cardMonthGoal");
+
+const cardPercent =
+    document.getElementById("cardPercent");
+
+const toast =
+    document.getElementById("toast");
 
 /* =========================================================
    LỊCH SỬ TÀI SẢN
@@ -452,6 +1073,19 @@ function usd(value){
 
 }
 
+function showToast(text){
+
+    toast.textContent = text;
+
+    toast.classList.add("show");
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },2000);
+
+}
 
 /* =========================================================
    ĐỔI DD/MM/YYYY
@@ -1051,7 +1685,207 @@ async function save(){
         }
     );
 
+showToast("✅ Đã đồng bộ Firebase");
+
 }
+
+async function saveTrade(){
+
+    const trade={
+
+        date:
+            tradeDate.value,
+
+        symbol:
+            tradeSymbol.value,
+
+        type:
+            tradeType.value,
+
+        lot:
+            Number(
+                tradeLot.value
+            ) || 0,
+
+        profit:
+            Number(
+                tradeProfit.value
+            ) || 0,
+
+        note:
+            tradeNote.value,
+
+        createdAt:
+            serverTimestamp()
+
+    };
+
+    await addDoc(
+        tradesRef,
+        trade
+    );
+
+    tradeLot.value="";
+
+    tradeProfit.value="";
+
+    tradeNote.value="";
+
+    tradeType.selectedIndex=0;
+
+    tradeSymbol.selectedIndex=0;
+        showToast(
+            "✅ Đã lưu giao dịch"
+        );
+
+}
+
+async function deleteTrade(id){
+
+    const ok =
+        confirm(
+            "Xóa giao dịch này?"
+        );
+
+    if(!ok) return;
+
+    await deleteDoc(
+        doc(
+            db,
+            "trades",
+            id
+        )
+    );
+
+    showToast(
+        "🗑 Đã xóa giao dịch"
+    );
+
+}
+
+window.deleteTrade =
+    deleteTrade;
+
+const q =
+    query(
+        tradesRef,
+        orderBy(
+            "createdAt",
+            "desc"
+        )
+    );
+
+onSnapshot(
+    q,
+    function(snapshot){
+
+        let total = 0;
+
+        let win = 0;
+
+        let lose = 0;
+
+        let profit = 0;
+
+        tradeBody.innerHTML="";
+
+        if(snapshot.empty){
+
+           tradeBody.innerHTML += `
+
+           <tr>
+
+           <td>${t.date}</td>
+
+           <td>${t.symbol}</td>
+
+           <td>${t.type}</td>
+
+           <td>${t.lot}</td>
+
+           <td style="
+           color:
+           ${t.profit>=0?"#41ff8c":"#ff6b6b"}
+           ">
+
+           $${usd(t.profit)}
+
+           </td>
+
+           <td>${t.note}</td>
+
+           <td>
+
+           <button
+           onclick="deleteTrade('${doc.id}')">
+
+           🗑
+
+           </button>
+
+           </td>
+
+           </tr>
+
+           `;
+
+            return;
+
+        }
+
+        snapshot.forEach(function(doc){
+
+            const t=
+                doc.data();
+
+            tradeBody.innerHTML+=`
+
+<tr>
+
+<td>${t.date}</td>
+
+<td>${t.symbol}</td>
+
+<td>${t.type}</td>
+
+<td>${t.lot}</td>
+
+<td style="
+color:
+${t.profit>=0?"#41ff8c":"#ff6b6b"}
+">
+
+${t.profit}
+
+</td>
+
+<td>${t.note}</td>
+
+</tr>
+
+`;
+
+        });
+
+totalTrades.textContent = total;
+
+winTrades.textContent = win;
+
+loseTrades.textContent = lose;
+
+const rate =
+    total == 0
+        ? 0
+        : (win / total * 100);
+
+winRate.textContent =
+    rate.toFixed(1) + "%";
+
+totalProfit.textContent =
+    "$" + usd(profit);
+
+    }
+);
 
 window.save = save;
 
@@ -1059,6 +1893,28 @@ window.save = save;
 document
     .getElementById("btnSave")
     .addEventListener("click", save);
+
+btnTradeSave
+    .addEventListener(
+        "click",
+        saveTrade
+    );
+
+moneyInput.addEventListener(
+
+    "keydown",
+
+    function(e){
+
+        if(e.key==="Enter"){
+
+            save();
+
+        }
+
+    }
+
+);
 
 
 onSnapshot(dashboardRef, async (docSnap)=>{
@@ -1141,6 +1997,9 @@ function calc(){
 
     const value = Number(moneyInput.value)||0;
 
+    cardMoney.textContent =
+        "$" + usd(value);
+
     //========================
     // Mục tiêu cuối
     //========================
@@ -1149,6 +2008,9 @@ function calc(){
         Math.min(value/GOAL*100,100);
 
     pctYear.textContent =
+        yearPercent.toFixed(2)+"%";
+
+    cardPercent.textContent =
         yearPercent.toFixed(2)+"%";
 
     barYear.style.width =
@@ -1166,6 +2028,10 @@ function calc(){
         targetValue(endMonth);
 
     monthGoal.textContent =
+        usd(monthTarget.toFixed(0));
+
+    cardMonthGoal.textContent =
+        "$" +
         usd(monthTarget.toFixed(0));
 
     monthName.textContent =
@@ -1285,6 +2151,10 @@ setInterval(
     60000
 );
 
+tradeDate.value =
+    new Date()
+    .toISOString()
+    .split("T")[0];
 
 tick();
 
@@ -1294,5 +2164,93 @@ updateChart();
 
 </script>
 
+<!-- ==============================
+Toast
+============================== -->
+
+<div
+    id="toast"
+    class="toast"
+>
+    ✅ Đã lưu và đồng bộ Firebase
+</div>
+
 </body>
 </html>
+
+/*=========================
+Toast
+=========================*/
+
+.toast{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    background:#1fbf75;
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:10px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+    opacity:0;
+
+    transform:translateY(30px);
+
+    transition:.35s;
+
+    z-index:9999;
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/*=========================
+Responsive
+=========================*/
+
+@media(max-width:700px){
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+    input{
+
+        width:100%;
+
+        margin-bottom:10px;
+
+    }
+
+    button{
+
+        width:100%;
+
+        margin-left:0;
+
+    }
+
+    .chart-container{
+
+        height:320px;
+
+    }
+
+}
+
