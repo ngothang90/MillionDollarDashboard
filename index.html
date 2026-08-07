@@ -81,6 +81,48 @@ h1{
 
 }
 
+.account-box{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:15px;
+
+margin-top:20px;
+
+}
+
+.account-card{
+
+background:#16233b;
+
+padding:18px;
+
+border-radius:10px;
+
+text-align:center;
+
+}
+
+.account-card .title{
+
+color:#9ca3af;
+
+margin-bottom:10px;
+
+}
+
+.account-card div:last-child{
+
+font-size:30px;
+
+font-weight:bold;
+
+color:#4ade80;
+
+}
+
 /* ==============================
    COUNTDOWN
 ============================== */
@@ -637,23 +679,57 @@ Responsive
      INPUT
 ============================== -->
 
-<div class="input-area">
+<div class="account-box">
 
-    <strong>💵 Tài sản hiện tại:</strong>
+    <div class="account-card">
 
-    <input
-        id="money"
-        type="number"
-        placeholder="Nhập USD"
-        step="1"
-    >
+        <div class="title">
 
-    <button id="btnSave">
-        Cập nhật
-    </button>
+            💰 Balance
+
+        </div>
+
+        <div id="balance">
+
+            $0
+
+        </div>
+
+    </div>
+
+    <div class="account-card">
+
+        <div class="title">
+
+            📈 Equity
+
+        </div>
+
+        <div id="equity">
+
+            $0
+
+        </div>
+
+    </div>
+
+    <div class="account-card">
+
+        <div class="title">
+
+            📊 Floating
+
+        </div>
+
+        <div id="floating">
+
+            $0
+
+        </div>
+
+    </div>
 
 </div>
-
 
 <!-- ==============================
      PROGRESS
@@ -721,7 +797,7 @@ Hoàn thành:
 
 <div class="trade-title">
 
-📒 Nhật ký giao dịch
+📈 Lịch sử giao dịch MT5
 
 </div>
 
@@ -940,7 +1016,8 @@ import {
   collection,
   addDoc,
   query,
-  orderBy
+  orderBy,
+  limit
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -963,6 +1040,12 @@ const tradesRef =
         db,
         "trades"
     );
+
+const tradesQuery = query(
+    tradesRef,
+    orderBy("time", "desc"),
+    limit(100)
+);
 
 const GOAL = 500000;
 
@@ -1112,6 +1195,7 @@ const toast =
 ========================================================= */
 
 let hist = [];
+let currentBalance = 0;
 
 
 /* =========================================================
@@ -1725,7 +1809,7 @@ async function save(){
 
     console.log("SAVE CLICKED");
 
-    const value = Number(moneyInput.value) || 0;
+    const value = Number(currentBalance) || 0;
 
     const now = new Date();
 
@@ -1737,6 +1821,7 @@ async function save(){
     const snap = await getDoc(dashboardRef);
 
     let hist = [];
+    let currentBalance = 0;
 
     if(snap.exists()){
 
@@ -1775,56 +1860,7 @@ showToast("✅ Đã đồng bộ Firebase");
 
 }
 
-async function saveTrade(){
 
-    const trade={
-
-        date:
-            tradeDate.value,
-
-        symbol:
-            tradeSymbol.value,
-
-        type:
-            tradeType.value,
-
-        lot:
-            Number(
-                tradeLot.value
-            ) || 0,
-
-        profit:
-            Number(
-                tradeProfit.value
-            ) || 0,
-
-        note:
-            tradeNote.value,
-
-        createdAt:
-            serverTimestamp()
-
-    };
-
-    await addDoc(
-        tradesRef,
-        trade
-    );
-
-    tradeLot.value="";
-
-    tradeProfit.value="";
-
-    tradeNote.value="";
-
-    tradeType.selectedIndex=0;
-
-    tradeSymbol.selectedIndex=0;
-        showToast(
-            "✅ Đã lưu giao dịch"
-        );
-
-}
 
 async function deleteTrade(id){
 
@@ -2023,14 +2059,43 @@ onSnapshot(dashboardRef, async (docSnap)=>{
     }
 
     const data = docSnap.data();
+    currentBalance =
+    data.balance || 0;
 
-    moneyInput.value = data.money || "";
+
+    // BƯỚC 4 - thêm ở đây
+
+    document.getElementById("balance").textContent =
+    "$"+usd(data.balance);
+
+    document.getElementById("equity").textContent =
+    "$"+usd(data.equity);
+
+    document.getElementById("floating").textContent =
+    "$"+usd(data.floatingProfit);
+
+
+   currentBalance = data.money || "";
 
     hist = data.hist || [];
 
     calc();
 
     updateChart();
+
+});
+
+onSnapshot(tradesQuery, function(snapshot){
+
+    const list = [];
+
+    snapshot.forEach(function(doc){
+
+        list.push(doc.data());
+
+    });
+
+    renderTrades(list);
 
 });
 
@@ -2074,6 +2139,28 @@ function updateChart(){
 
 }
 
+function renderTrades(list){
+
+    tradeBody.innerHTML = "";
+
+    list.forEach(function(item){
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${item.time.substring(0,10)}</td>
+            <td>${item.symbol}</td>
+            <td>${item.side}</td>
+            <td>${item.volume}</td>
+            <td>${usd(item.profit)}</td>
+        `;
+
+        tradeBody.appendChild(tr);
+
+    });
+
+}
+
 
 /* =========================================================
    DASHBOARD
@@ -2081,7 +2168,7 @@ function updateChart(){
 
 function calc(){
 
-    const value = Number(moneyInput.value)||0;
+    const value = Number(currentBalance)||0;
 
     cardMoney.textContent =
         "$" + usd(value);
@@ -2263,4 +2350,7 @@ Toast
 
 </body>
 </html>
+
+
+
 
